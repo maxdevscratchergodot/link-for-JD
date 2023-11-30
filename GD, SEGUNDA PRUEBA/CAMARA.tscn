@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds4ku67h6uos3"]
+
+[sub_resource type="GDScript" id="GDScript_1pyww"]
+script/source = "extends Camera2D
+
+# Referencia al jugador (asigna el nodo del jugador desde el editor)
+var jugador : CharacterBody2D
+
+# Llamado en cada frame del juego
+func _process(delta):
+	if jugador:
+		# Obtener la posición del jugador y centrar la cámara en ella
+		position = jugador.global_position
+
+
+"
+
+[node name="Camera2D" type="Camera2D"]
+position_smoothing_enabled = true
+script = SubResource("GDScript_1pyww")

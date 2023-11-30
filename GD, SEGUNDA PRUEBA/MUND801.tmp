@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://c24qwsrqicrr3"]
+
+[ext_resource type="Texture2D" uid="uid://di8ts7aljr3mb" path="res://MUNDO.png" id="1_433bm"]
+[ext_resource type="Texture2D" uid="uid://esk7qgd2t81h" path="res://CIELO.png" id="1_gky25"]
+[ext_resource type="PackedScene" uid="uid://bkw1wfd0u038" path="res://PLAYER.tscn" id="2_niqnm"]
+[ext_resource type="PackedScene" uid="uid://ds4ku67h6uos3" path="res://CAMARA.tscn" id="3_ytwk8"]
+[ext_resource type="PackedScene" uid="uid://bvi3o1l37psgr" path="res://RAYO.tscn" id="5_66dlx"]
+[ext_resource type="Script" path="res://RAYO.gd" id="6_ee2sq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e4fgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efj5s"]
+size = Vector2(1090.67, 960.352)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjlcl"]
+size = Vector2(3673.94, 545)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CIELO" type="Sprite2D" parent="."]
+position = Vector2(538, 395)
+scale = Vector2(16.4227, 15.386)
+texture = ExtResource("1_gky25")
+
+[node name="PISO" type="StaticBody2D" parent="."]
+position = Vector2(-144, -40)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_e4fgv")
+
+[node name="PISO SPRITE" type="Sprite2D" parent="PISO"]
+position = Vector2(816, 922)
+scale = Vector2(4.53186, 1.02391)
+texture = ExtResource("1_433bm")
+
+[node name="PISO COLISION" type="CollisionShape2D" parent="PISO"]
+position = Vector2(825, 924)
+scale = Vector2(3.375, 0.495652)
+shape = SubResource("RectangleShape2D_efj5s")
+
+[node name="FIN IZQUIERDA" type="CollisionShape2D" parent="PISO"]
+position = Vector2(-753, 431)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qjlcl")
+
+[node name="FIN DERECHA" type="CollisionShape2D" parent="PISO"]
+position = Vector2(2403, 431)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qjlcl")
+
+[node name="JUGADOR" parent="." instance=ExtResource("2_niqnm")]
+position = Vector2(553, 454)
+
+[node name="CAMARA DEL JUGADOR" parent="JUGADOR" instance=ExtResource("3_ytwk8")]
+position = Vector2(6, 147)
+rotation = 3.14159
+scale = Vector2(-35354.2, 11107.1)
+ignore_rotation = false
+position_smoothing_speed = 1.0
+
+[node name="Node2D" parent="JUGADOR" instance=ExtResource("5_66dlx")]
+position = Vector2(-3907, 130)
+script = ExtResource("6_ee2sq")

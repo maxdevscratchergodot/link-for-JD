@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkw1wfd0u038"]
+
+[ext_resource type="Texture2D" uid="uid://df41gghorym6w" path="res://icon.svg" id="1_a3ucv"]
+[ext_resource type="Script" path="res://PLAYER.gd" id="1_vwlnd"]
+
+[sub_resource type="Animation" id="Animation_yhcyp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_6nigx"]
+resource_name = "movimiento"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0672992, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_647tl"]
+_data = {
+"RESET": SubResource("Animation_yhcyp"),
+"movimiento": SubResource("Animation_6nigx")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht114"]
+size = Vector2(115, 116.008)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_vwlnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = ExtResource("1_a3ucv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_647tl")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.00585151, -0.497052)
+rotation = 1.57373
+shape = SubResource("RectangleShape2D_ht114")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c24qwsrqicrr3"]
+
+[ext_resource type="Texture2D" uid="uid://di8ts7aljr3mb" path="res://MUNDO.png" id="1_433bm"]
+[ext_resource type="PackedScene" uid="uid://bkw1wfd0u038" path="res://PLAYER.tscn" id="2_niqnm"]
+[ext_resource type="PackedScene" uid="uid://ds4ku67h6uos3" path="res://CAMARA.tscn" id="3_ytwk8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e4fgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efj5s"]
+size = Vector2(1090.67, 494.298)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D2" parent="." instance=ExtResource("2_niqnm")]
+position = Vector2(553, 455)
+
+[node name="Camera2D" parent="Sprite2D2" instance=ExtResource("3_ytwk8")]
+position = Vector2(-13, 3.99997)
+position_smoothing_speed = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-144, -40)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_e4fgv")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(807, 758)
+scale = Vector2(4.53186, 0.495652)
+texture = ExtResource("1_433bm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(830.5, 761.5)
+scale = Vector2(3.375, 0.495652)
+shape = SubResource("RectangleShape2D_efj5s")
+one_way_collision = true
